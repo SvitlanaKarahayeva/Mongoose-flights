@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/show.css' />
+    <title>Details</title>
+</head>
+<body>
+  <div class="detail-form">
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+        
+          <a href="/flights"><button class="btn btn-outline-success" type="button">All Flights</button></a>
+          <a href="/flights/new"><button class="btn btn-sm btn-outline-secondary" type="button">Add Flights</button></a>
+        </form>
+      </nav>
+
+    <ul class="list-group">
+        <li class="list-group-item active"><b>Flight#</b><%= flights.flightNo %> Details</li> 
+        <li class="list-group-item"><b>Departs:</b> <%= flights.depart %> </li>
+        <li class="list-group-item"><b>Airport:</b> <%= flights.airport %> </li>
+        <li class="list-group-item"><b>Airline:</b> <%= flights.airline %> </li>
+      </ul>
+    </div>
+      <!--  destinations list-->
+    <h4>Destinations for flight# <%= flights.flightNo %> </h4>
+      <table class="table table-bordered table-sm ">
+        <thread>
+             <tr> 
+                  <th scope="col">Airport</th>
+                  <th scope="col">Arrival</th>
+                  
+             </tr>
+        </thread>
+        <tbody>
+           
+           <% for(let d of flights.destinations){ %>
+             <tr>
+                  <td><%= d.airport %></td>
+                  <td><%= d.arrival  %></td>
+             </tr>
+             <% } %>
+
+        </tbody>
+   </table>
+
+   <br>
+
+      <!--  tickets list-->
+      <h4>Tickets Purchased for flight# <%= flights.flightNo %> </h4>
+      <table class="table table-bordered table-sm ">
+        <thread>
+             <tr> 
+                  <th scope="col">Seat#</th>
+                  <th scope="col">Price</th>
+                  
+             </tr>
+        </thread>
+        <tbody>
+           
+           <% for(let ticket of flights.tickets){ %>  
+             <tr>
+                  <td>  <%=ticket.seat %> </td>
+                  <td>$<%=ticket.price %>CAD</td>
+             </tr>
+          
+            <% } %> 
+        </tbody>
+        <button><a href="/flights/<%= flights._id%>/tickets/new">Add new ticket</a></button>
+   </table>
+   
+
+    <!-- add destination form -->
+    <div class="form-div">
+
+      <form action="/flights/destination/<%= flights._id %> " method="POST">
+       <h4>Add New Destination</h4> 
+          <div class="form-group">  
+            <label style="background-color:white;">Arrival date:</label>
+            <input type="datetime-local" id="meeting-time" value="2020-09-01T19:30"
+            min="2020-09-01T00:00" max="2021-09-01T00:00" name="destArrival">
+          </div>
+      
+          <div class="form-group">
+            <label style="background-color:white;">Airport</label>
+                <select name="destAirport">
+                <option value="DEN">DEN</option>
+                <option value="DFW">DFW</option>
+                <option value="LAX">LAX</option>
+                <option value="SAN">SAN</option>
+                </select>
+         </div>
+          <button type="submit" class="btn btn-primary">Add Destination</button>
+        </form>    
+      </div>
+
+</body>
+</html>

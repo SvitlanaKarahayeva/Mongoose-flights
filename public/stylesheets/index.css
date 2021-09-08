@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 auto
+ 
+}
+body{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://media.cntraveler.com/photos/581250f2997d59497dccf8bc/16:9/w_2560%2Cc_limit/GettyImages-185298837.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+table{
+    max-width: 1200px;
+}
+h1{
+    font-size: 30px;
+    text-align: center;
+    margin: 30px
+}
+
+thead{
+    font-size:25px;
+    text-align: center
+  
+}
+tbody{
+    text-align: center
+}
